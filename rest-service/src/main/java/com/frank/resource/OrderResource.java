@@ -3,6 +3,7 @@ package com.frank.resource;
 import com.frank.model.Order;
 import com.frank.model.OrderResponse;
 import com.frank.service.OrderService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,11 +17,13 @@ public class OrderResource {
     @Autowired
     private OrderService orderService;
 
+    @ApiOperation(value = "Submit an order")
     @RequestMapping(value = ORDER_URI+"/submit", method = POST)
     public OrderResponse submitOrder(@RequestBody Order order) {
         return orderService.submit(order);
     }
 
+    @ApiOperation(value = "View an order")
     @RequestMapping(value = ORDER_URI+"/view", method = GET)
     public Order viewOrder(@RequestParam(value="id") String id) {
         return orderService.view(id);
