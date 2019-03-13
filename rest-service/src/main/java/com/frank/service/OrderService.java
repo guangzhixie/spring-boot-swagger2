@@ -17,9 +17,9 @@ public class OrderService {
         String id = order.getId();
         BigDecimal amount = order.getAmount();
         if (!StringUtils.isEmpty(id) && amount.signum() <= 0) {
-            orderCache.put(id, order);
             return new OrderResponse("6001", "INVALID_ORDER_AMOUNT");
         }
+        orderCache.put(id, order);
         return new OrderResponse("6000", "SUCCESS");
     }
 
